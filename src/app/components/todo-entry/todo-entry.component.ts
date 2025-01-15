@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, output, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-entry',
@@ -8,7 +8,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './todo-entry.component.scss'
 })
 export class TodoEntryComponent {
-  @Input() todo: string = "";
-  @Input() isImportant: boolean = false;
+  @Input() todo!: {id: number; name: string;};
+
   @Output() remove = new EventEmitter();
+  @Output() edit = new EventEmitter();
 }
