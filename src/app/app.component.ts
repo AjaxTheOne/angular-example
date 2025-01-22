@@ -6,6 +6,7 @@ import { TodoEntryComponent } from './components/todo-entry/todo-entry.component
 import { TodoAddComponent } from './components/todo-add/todo-add.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,19 @@ import { FooterComponent } from './layout/footer/footer.component';
     HeaderComponent,
     FooterComponent,
     TodoEntryComponent,
-    TodoAddComponent
+    TodoAddComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+  constructor(private authService: AuthService) {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      this.authService.user = JSON.parse(user);
+    }
+  }
+
 }
